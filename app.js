@@ -259,7 +259,7 @@ var order_main_label = document.getElementById("order_main_label");
 	            return;
             }*/
             let cocktail = getById(id_to_send);
-            item = order_name_input.value+"\nСодержимое: "+cocktail.name +"\n"+parse_components(cocktail.components)+"\n"+cocktail.recipe;
+            item = order_name_input.value+"\nСодержимое: "+cocktail.name +"\n"+"\n"+cocktail.recipe;/*parse_components(cocktail.components)*/
             tg.sendData(item); 
             //console.log(item);
             order_window.style.display = 'none';
