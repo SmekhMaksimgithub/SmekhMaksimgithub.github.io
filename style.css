@@ -202,7 +202,8 @@ footer{
 #okno {
         display: none;
         position:absolute;
-        width:60%
+    width:12rem;
+        
       }
 
 #okno .show {

@@ -22,7 +22,7 @@ return cocktails_array[i];
 
         filter_data=["","",""];
 
-
+        var filter_word = "";
         filters = [["Крепкий", "Слабоалкогольный", "Безалкогольный"], ["Горький","Кислый", "Сладкий"], ["На водке","На джине", "На роме","На текиле"]];
 
         function get_checks()
@@ -77,10 +77,11 @@ set_checkboxes();
     var popup = document.getElementById("okno");
     var ctitle = document.getElementById("ctitle");
     var search_btn = document.getElementById("search_btn");
+    var search_input = document.getElementById("search_input");
 
     var search_img = document.getElementById("search_img");
     var catalogue = document.getElementById("catalogue");
-    var bool = false;
+
     var bool2 = false;
 
     var order_window = document.getElementById("order_window");
@@ -90,12 +91,14 @@ set_checkboxes();
 
     function closeext()
     {
-    if(bool==true)
+            if(search_bool==1)
             {
-                popup.style.display = 'none';
-                ctitle.style.display = 'block';
-                search_img.src="icn/search.svg";
-                bool = !bool;
+                 search_img.src = "icn/search.svg";
+                popup.style.display='none';
+                filter_word="";
+                search_input.value="";
+                search_bool=0;
+                
             }
              catalogue.style.display = 'none';
 
@@ -103,21 +106,29 @@ set_checkboxes();
 
     function get_boolean(element)
     {
-     if(element.available==0)
-     return true;
-     if(filter_data[0]!="" && !filter_data[0].includes(element.strength))
-     {
+        if(element.available==0)
         return true;
-     }
-     if(filter_data[1]!="" && !filter_data[1].includes(element.flavor))
-     {
+        
+        var smallname = (element.name).toLowerCase();
+        
+        if(filter_word!="")
+        {if(!smallname.includes(filter_word.toLowerCase()))
+            return true;
+            else 
+            return false;}
+        if(filter_data[0]!="" && !filter_data[0].includes(element.strength))
+        {
+        return true;
+        }
+        if(filter_data[1]!="" && !filter_data[1].includes(element.flavor))
+        {
 
-        return true;
-     }
-     if(filter_data[2]!="" && !filter_data[2].includes(element.base))
-     {
-        return true;
-     }
+            return true;
+        }
+        if(filter_data[2]!="" && !filter_data[2].includes(element.base))
+        {
+            return true;
+        }
     }
 
     function generate_catalogue_items()
@@ -138,16 +149,7 @@ set_checkboxes();
                 "<button class = \"button order_btn\" id = "+element.id+" ><span class=\"fb\">Заказ</span></button>"+
             "</div>";
 
-            /*var current_button = document.getElementById(element.id);
-            current_button.onclick= function()
-            {
-                closeext();
-                order_window.style.display = 'block';
-                filter_img.style.display = 'none';
-                filter_label.innerHTML = "Подтвердить заказ";
-                currentstate=1;
-                bool2 = !bool2;
-            };*/
+
 
         }
          catalogue.innerHTML+="<br>";
@@ -169,13 +171,6 @@ set_checkboxes();
                 "<span class = \"order_desk\">"+parse_components(element.components)+"</span>"+
                 "</div>";
                 order_internal.innerHTML = element.description;
-                /*<div class="image-box_desktop"><img alt="" class="cocktail_img" src="img/2.jpg"></div>
-            <div>
-                <h2 class="common-sub-title title desktop">Негрони</h2>
-                <span class = "order_desk">Крепкий, Горький, На джине</span>
-                <h3  class = "order_desk">Состав</h3>
-                <span class = "order_desk">Абобинг, бобинг и терраформинг</span>
-                </div>*/
 
 
 
@@ -189,8 +184,34 @@ set_checkboxes();
             }
         }
     }
-
+    var search_bool=0;
     generate_catalogue_items();
+
+    search_btn.onclick=function()
+    {
+        if(search_bool==0)
+            {
+                 popup.style.display='block';
+                search_img.src = "icn/close.svg";
+                search_bool=1;
+            }
+        else 
+            {
+                search_img.src = "icn/search.svg";
+                popup.style.display='none';
+                filter_word="";
+                search_input.value="";
+                search_bool=0;
+            }
+       
+        
+    }
+
+  search_input.oninput = function() {
+      filter_word=search_input.value;
+      generate_catalogue_items();
+  }
+
 
 
       var filter_window = document.getElementById("filter_window");
@@ -212,6 +233,7 @@ var order_name_input = document.getElementById("order_name_input");
             {
                 str+=components[i][0]+" "+components[i][1]+" мл, "
             }
+        str= str.slice(0, -2);
         return str;
     }
 
@@ -259,7 +281,7 @@ var order_name_input = document.getElementById("order_name_input");
             }*/
             let cocktail = getById(id_to_send);
             var components = parse_components(cocktail.components);
-            item=order_name_input.value+"\nСодержимое:"+cocktail.name+"\n"+components+"\n"+cocktail.recipe;
+            item=order_name_input.value+"\nСодержимое: "+cocktail.name+"\n"+components+"\n"+cocktail.recipe;
             tg.sendData(item); 
             //console.log(item);
             order_window.style.display = 'none';
