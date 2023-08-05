@@ -202,6 +202,7 @@ set_checkboxes();
 
       var bool1 = false;
       var currentstate=0;
+var order_main_label = document.getElementById("order_main_label");
 
 
     filter_btn.onclick = function()
@@ -231,12 +232,17 @@ set_checkboxes();
         {
             if(order_input.value=="")
             {
+                order_main_label.innerHTML="Введите имя (промотайте вниз)";
+                order_main_label.style.color = "red";
                 user_name.style.color = "red";
                 //order_name_input.style.background-color = "red";
                 setTimeout(function(){
 	                user_name.style.color = "black";
-	                //order_name_input.style.background-color = "#EBEBEB";
 	            },500);
+                setTimeout(function(){
+	                order_main_label.style.color = "black";
+                    order_main_label.innerHTML="Подтверждение заказа";
+	            },2000);
 
 
 	            return;
