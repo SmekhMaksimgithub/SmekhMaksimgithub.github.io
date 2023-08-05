@@ -230,7 +230,7 @@ var order_main_label = document.getElementById("order_main_label");
         }
         else//for order
         {
-            if(order_input.value=="")
+            /*if(order_input.value=="")
             {
                 order_main_label.innerHTML="Введите имя (промотайте вниз)";
                 order_main_label.style.color = "red";
@@ -246,9 +246,9 @@ var order_main_label = document.getElementById("order_main_label");
 
 
 	            return;
-            }
+            }*/
             let cocktail = getById(id_to_send);
-            item = "Заказчик: "+order_name_input.value+"\nСодержимое: "+cocktail.name +"\n"+cocktail.components+"\n"+cocktail.recipe;
+            item = order_name_input.value+"\nСодержимое: "+cocktail.name +"\n"+cocktail.components+"\n"+cocktail.recipe;
             tg.sendData(item); 
             //console.log(item);
             order_window.style.display = 'none';
