@@ -120,6 +120,17 @@ set_checkboxes();
      }
     }
 
+
+    function parse_components(components)
+    {
+        var str="";
+        for(var i=0; i<components.length;i++)
+            {
+                str+=components[i][0]+" "+components[i][1]+" мл, "
+            }
+        return str;
+    }
+    
     function generate_catalogue_items()
     {
         catalogue.innerHTML = "";
@@ -166,7 +177,7 @@ set_checkboxes();
                 "<h2 class=\"common-sub-title title desktop\">"+element.name+"</h2>"+
                 "<span class = \"order_desk\">"+element.strength+", "+element.flavor+", "+ element.base+"</span>"+
                 "<h3  class = \"order_desk\">"+"Cостав"+"</h3>"+
-                "<span class = \"order_desk\">"+element.components+"</span>"+
+                "<span class = \"order_desk\">"+parse_components(element.components)+"</span>"+
                 "</div>";
                 order_internal.innerHTML = element.description;
                 /*<div class="image-box_desktop"><img alt="" class="cocktail_img" src="img/2.jpg"></div>
@@ -248,7 +259,7 @@ var order_main_label = document.getElementById("order_main_label");
 	            return;
             }*/
             let cocktail = getById(id_to_send);
-            item = order_name_input.value+"\nСодержимое: "+cocktail.name +"\n"+cocktail.components+"\n"+cocktail.recipe;
+            item = order_name_input.value+"\nСодержимое: "+cocktail.name +"\n"+parse_components(element.components)+"\n"+cocktail.recipe;
             tg.sendData(item); 
             //console.log(item);
             order_window.style.display = 'none';

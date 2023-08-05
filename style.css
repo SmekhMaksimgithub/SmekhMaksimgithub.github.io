@@ -86,12 +86,12 @@ display:inline-flex;
     box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
 .btn_img
-{height:3rem;
-width:3rem;
+{height:2rem;
+width:2rem;
 }
 .fb
 {   vertical-align:top;
-font-size:1.5rem;
+font-size:1.3rem;
 color:black;
 text-align: center;
 margin-left: 1rem;
@@ -125,7 +125,7 @@ width:100%;
 .catalogue_item {
 display: flex;
   width: 100%;
- height: 12rem;
+ height: 10rem;
   background-color: #fff;
 }
 
@@ -144,8 +144,8 @@ margin-top:5rem;
 .cocktail_img
 {
 margin-top:3rem;
-max-height:9rem;
-max-width:5rem;
+max-height:7rem;
+max-width:4rem;
 
 }
 
@@ -154,7 +154,7 @@ max-width:5rem;
 }
 
 .description {
-  font-size: 1rem;
+  font-size: 0.8rem;
   text-align: left;
   width: 90%;
   margin: 1.5rem auto;
@@ -162,12 +162,12 @@ max-width:5rem;
 
 .common-sub-title
 {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 
 .cocktail_char
 {
-font-size:1.5rem;
+font-size:1.3rem;
 }
 footer{
   position: fixed;
@@ -235,8 +235,8 @@ margin-top:6em;
 
 .larger
 {
-width:2rem;
-height:2rem;
+width:1.7rem;
+height:1.7rem;
 margin-top:0.5rem;
 margin-bottom:0.5rem;
 }
@@ -257,7 +257,7 @@ background-color:white;
 #orderlabel1
 {
 margin-top:6rem;
-font-size:2rem;
+font-size:1.7rem;
 
 }
 
@@ -285,7 +285,7 @@ margin-bottom:2rem;
 
 #order_name_input
 {
-font-size:1.7rem;
+font-size:1.5rem;
 width:100%;
 height:2.5rem;
 background-color:#EBEBEB;
@@ -293,5 +293,5 @@ background-color:#EBEBEB;
 
 .order_desk
 {
-font-size:1.3rem;
+font-size:1.1rem;
 }
