@@ -120,17 +120,6 @@ set_checkboxes();
      }
     }
 
-
-    function parse_components(components)
-    {
-        var str="";
-        for(var i=0; i<components.length;i++)
-            {
-                str+=components[i][0]+" "+components[i][1]+" мл, "
-            }
-        return str;
-    }
-    
     function generate_catalogue_items()
     {
         catalogue.innerHTML = "";
@@ -215,6 +204,15 @@ set_checkboxes();
       var currentstate=0;
 var order_main_label = document.getElementById("order_main_label");
 
+    function parse_components(components)
+    {
+        var str="";
+        for(var i=0; i<components.length;i++)
+            {
+                str+=components[i][0]+" "+components[i][1]+" мл, "
+            }
+        return str;
+    }
 
     filter_btn.onclick = function()
     {
@@ -259,7 +257,7 @@ var order_main_label = document.getElementById("order_main_label");
 	            return;
             }*/
             let cocktail = getById(id_to_send);
-            item = order_name_input.value+"\nСодержимое: "+cocktail.name +"\n"+"\n"+cocktail.recipe;/*parse_components(cocktail.components)*/
+            let item=order_name_input.value+"\nСодержимое:"+cocktail.name+"\n"+parse_components(element.components)+"\n"+cocktail.recipe;
             tg.sendData(item); 
             //console.log(item);
             order_window.style.display = 'none';
