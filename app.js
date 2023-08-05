@@ -204,6 +204,7 @@ set_checkboxes();
       var currentstate=0;
 var order_main_label = document.getElementById("order_main_label");
 var order_name_input = document.getElementById("order_name_input");
+
     function parse_components(components)
     {
         var str="";
@@ -257,7 +258,8 @@ var order_name_input = document.getElementById("order_name_input");
 	            return;
             }*/
             let cocktail = getById(id_to_send);
-            item=order_name_input.value+"\nСодержимое:"+cocktail.name+"\n"+parse_components(cocktail.components)+"\n"+cocktail.recipe;
+            var components = parse_components(cocktail.components);
+            item=order_name_input.value+"\nСодержимое:"+cocktail.name+"\n"+components+"\n"+cocktail.recipe;
             tg.sendData(item); 
             //console.log(item);
             order_window.style.display = 'none';
