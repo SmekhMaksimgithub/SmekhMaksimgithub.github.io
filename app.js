@@ -1,9 +1,10 @@
 let tg = window.Telegram.WebApp;
 tg.expand();
- 
+
 let item ="";
- 
- 
+
+
+
 function getById(id)
 {
 for(var i=0; i<cocktails_array.length;i++)
@@ -20,16 +21,16 @@ return cocktails_array[i];
 
 
 
-        filter_data=["","",""];
+        filter_data=["","","",""];
 
         var filter_word = "";
-        filters = [["Крепкий", "Слабоалкогольный", "Безалкогольный"], ["Горький","Кислый", "Сладкий"], ["На водке","На джине", "На роме","На текиле"]];
+        filters = [["Крепкий", "Слабоалкогольный", "Безалкогольный"], ["Лонг дринк", "Шорт дринк", "Шот"],["Горький","Кислый", "Сладкий"], ["На водке","На джине", "На роме","На текиле"]];
 
         function get_checks()
         {
 
 
-            filter_data=["","",""];
+            filter_data=["","","",""];
             var t=0;
             for(var i =0; i<filters.length;i++)
             for(var j =0; j<filters[i].length;j++)
@@ -44,7 +45,7 @@ return cocktails_array[i];
 
 	   function reset()
 	    {
-            filter_data=["","",""];
+            filter_data=["","","",""];
             for(var i=0; i<checkboxes.length; i++)
             {
                 checkboxes[i].checked = false;
@@ -120,12 +121,16 @@ set_checkboxes();
         {
         return true;
         }
-        if(filter_data[1]!="" && !filter_data[1].includes(element.flavor))
+        if(filter_data[1]!="" && !filter_data[1].includes(element.kind))
+        {
+        return true;
+        }
+        if(filter_data[2]!="" && !filter_data[2].includes(element.flavor))
         {
 
             return true;
         }
-        if(filter_data[2]!="" && !filter_data[2].includes(element.base))
+        if(filter_data[3]!="" && !filter_data[3].includes(element.base))
         {
             return true;
         }
@@ -144,7 +149,7 @@ set_checkboxes();
             "<img alt=\"\" class=\"cocktail_img\" src=\""+element.img_path+"\"></div>"+
             "<div>"+
                 "<h2 class=\"common-sub-title title desktop\">"+element.name+"</h2>"+
-               "<a class = \"cocktail_char\">"+element.strength+", "+element.flavor+", "+ element.base+"</a>"+
+               "<a class = \"cocktail_char\">"+element.strength+", "+element.kind+", "+element.flavor+", "+ element.base+"</a>"+
                 "</div>"+
                 "<button class = \"button order_btn\" id = "+element.id+" ><span class=\"fb\">Заказ</span></button>"+
             "</div>";
@@ -166,7 +171,7 @@ set_checkboxes();
                 order_item.innerHTML="<div class=\"image-box_desktop\"><img alt=\"\" class=\"cocktail_img\" "+"src=\""+element.img_path+"\"></div>"+
             "<div>"+
                 "<h2 class=\"common-sub-title title desktop\">"+element.name+"</h2>"+
-                "<span class = \"order_desk\">"+element.strength+", "+element.flavor+", "+ element.base+"</span>"+
+                "<span class = \"order_desk\">"+element.strength+", "+element.kind+", "+element.flavor+", "+ element.base+"</span>"+
                 "<h3  class = \"order_desk\">"+"Cостав"+"</h3>"+
                 "<span class = \"order_desk\">"+parse_components(element.components)+"</span>"+
                 "</div>";
@@ -202,6 +207,7 @@ set_checkboxes();
                 filter_word="";
                 search_input.value="";
                 search_bool=0;
+                generate_catalogue_items();
             }
        
         
@@ -231,7 +237,7 @@ var order_name_input = document.getElementById("order_name_input");
         var str="";
         for(var i=0; i<components.length;i++)
             {
-                str+=components[i][0]+" "+components[i][1]+" мл, "
+                str+=components[i][0]+" "+components[i][1]+", "
             }
         str= str.slice(0, -2);
         return str;
