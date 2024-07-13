@@ -24,7 +24,9 @@ return cocktails_array[i];
         filter_data=["","","",""];
 
         var filter_word = "";
-        filters = [["Крепкий", "Слабоалкогольный", "Безалкогольный"], ["Лонг дринк", "Шорт дринк", "Шот"],["Горький","Кислый", "Сладкий"], ["На водке","На джине", "На роме","На текиле"]];
+        filters = [["Крепкий", "Слабоалкогольный", "Безалкогольный"], ["Лонг дринк", "Шорт дринк", "Шот"],["Горький","Кислый", "Сладкий"],
+         ["На водке","На джине", "На роме","На текиле", "На кальвадосе", "На шампанском", "На виски"]];
+
 
         function get_checks()
         {
@@ -40,7 +42,7 @@ return cocktails_array[i];
                 //console.log(filters[i][j]);
                 t++;
             }
-            //console.log(filter_data);
+           // console.log(filter_data);
         }
 
 	   function reset()
@@ -99,7 +101,7 @@ set_checkboxes();
                 filter_word="";
                 search_input.value="";
                 search_bool=0;
-                
+
             }
              catalogue.style.display = 'none';
 
@@ -109,13 +111,13 @@ set_checkboxes();
     {
         if(element.available==0)
         return true;
-        
+
         var smallname = (element.name).toLowerCase();
-        
+
         if(filter_word!="")
         {if(!smallname.includes(filter_word.toLowerCase()))
             return true;
-            else 
+            else
             return false;}
         if(filter_data[0]!="" && !filter_data[0].includes(element.strength))
         {
@@ -200,7 +202,7 @@ set_checkboxes();
                 search_img.src = "icn/close.svg";
                 search_bool=1;
             }
-        else 
+        else
             {
                 search_img.src = "icn/search.svg";
                 popup.style.display='none';
@@ -209,8 +211,8 @@ set_checkboxes();
                 search_bool=0;
                 generate_catalogue_items();
             }
-       
-        
+
+
     }
 
   search_input.oninput = function() {
@@ -288,7 +290,7 @@ var order_name_input = document.getElementById("order_name_input");
             let cocktail = getById(id_to_send);
             var components = parse_components(cocktail.components);
             item=order_name_input.value+"\nСодержимое: "+cocktail.name+"\n"+components+"\n"+cocktail.recipe;
-            tg.sendData(item); 
+            tg.sendData(item);
             //console.log(item);
             order_window.style.display = 'none';
             filter_label.innerHTML = "Фильтр";
@@ -345,4 +347,3 @@ var order_name_input = document.getElementById("order_name_input");
             catalogue.style.display = 'block';
 
         };
-
